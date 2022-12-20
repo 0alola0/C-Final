@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/macuser/Desktop/C# final/CalculatorApplication/CalculatorApplication/CalculatorApplication.csproj",
+      "projectUniqueName": "/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/CalculatorApplication.csproj",
       "projectName": "CalculatorApplication",
-      "projectPath": "/Users/macuser/Desktop/C# final/CalculatorApplication/CalculatorApplication/CalculatorApplication.csproj",
+      "projectPath": "/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/CalculatorApplication.csproj",
       "packagesPath": "/Users/macuser/.nuget/packages/",
-      "outputPath": "/Users/macuser/Desktop/C# final/CalculatorApplication/CalculatorApplication/obj/",
+      "outputPath": "/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/macuser/.nuget/NuGet/NuGet.Config"

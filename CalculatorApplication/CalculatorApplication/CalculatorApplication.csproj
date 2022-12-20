@@ -10,9 +10,11 @@
   <ItemGroup>
     <None Remove="Events\" />
     <None Remove="Events\EventTypes\" />
+    <None Remove="EventInterfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Events\EventTypes\" />
+    <Folder Include="EventInterfaces\" />
   </ItemGroup>
 </Project>
