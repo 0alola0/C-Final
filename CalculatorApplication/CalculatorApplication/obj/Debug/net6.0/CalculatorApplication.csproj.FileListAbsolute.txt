@@ -13,3 +13,18 @@
 /Users/macuser/Desktop/C# final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.pdb
 /Users/macuser/Desktop/C# final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.genruntimeconfig.cache
 /Users/macuser/Desktop/C# final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/ref/CalculatorApplication.dll
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/bin/Debug/net6.0/CalculatorApplication
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/bin/Debug/net6.0/CalculatorApplication.deps.json
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/bin/Debug/net6.0/CalculatorApplication.runtimeconfig.json
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/bin/Debug/net6.0/CalculatorApplication.dll
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/bin/Debug/net6.0/CalculatorApplication.pdb
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.csproj.AssemblyReference.cache
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.AssemblyInfoInputs.cache
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.AssemblyInfo.cs
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.csproj.CoreCompileInputs.cache
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.dll
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/refint/CalculatorApplication.dll
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.pdb
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/CalculatorApplication.genruntimeconfig.cache
+/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/obj/Debug/net6.0/ref/CalculatorApplication.dll
