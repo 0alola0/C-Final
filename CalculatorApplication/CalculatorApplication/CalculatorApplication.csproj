@@ -11,10 +11,20 @@
     <None Remove="Events\" />
     <None Remove="Events\EventTypes\" />
     <None Remove="EventInterfaces\" />
+    <None Remove="Events\EventTypes\Meetings\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="EventStorage\" />
+    <None Remove="ExceptionStorage\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Events\EventTypes\" />
     <Folder Include="EventInterfaces\" />
+    <Folder Include="Events\EventTypes\OnlineEvents\" />
+    <Folder Include="EventStorage\" />
+    <Folder Include="ExceptionStorage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 </Project>
