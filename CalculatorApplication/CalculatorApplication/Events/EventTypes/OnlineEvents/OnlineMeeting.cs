@@ -1,7 +1,7 @@
 ﻿using System;
 namespace CalculatorApplication.Events.EventTypes
 {
-    public class OnlineMeeting : BaseEvent
+    public class OnlineMeeting : Meeting
     {
         private string meetingPlatform;
         public string MeetingPlatform

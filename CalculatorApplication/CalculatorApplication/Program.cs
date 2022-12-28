@@ -1,5 +1,7 @@
 ﻿using System;
+using CalculatorApplication.Events;
 using CalculatorApplication.Events.EventTypes;
+using Newtonsoft.Json;
 
 namespace CalculatorApplication
 {
@@ -34,14 +36,18 @@ namespace CalculatorApplication
             
         }
 
+        
+
         public static void Start()
         {
+            
             Console.WriteLine("Let us start!");
             Console.WriteLine("what would you like to do? choose your oprion by typing corresponding letter");
             Console.WriteLine("A. add a new event");
             Console.WriteLine("B. find an event and amend it");
             Console.WriteLine("C. see all events");
             Console.WriteLine("D. delete an event");
+            Console.WriteLine("E. Read what went wrong");
 
             string actionAnswer = Console.ReadLine();
 
@@ -55,18 +61,35 @@ namespace CalculatorApplication
 
                 string eventTypeAnswer = Console.ReadLine();
 
+                
+
                 if (eventTypeAnswer == "A" || eventTypeAnswer == "a")
                 {
-                    var newMeeting = new GeneralEvent();
+                    var newMeeting = new BaseEvent();
 
                     newMeeting.NewEvent();
 
-                    Console.WriteLine("describe your event");
-                    var newEventDesc = Console.ReadLine();
-                    newMeeting.EventDescription = newEventDesc.ToString();
-
                     Console.WriteLine($"is this correct? {newMeeting.EventName}, {newMeeting.ID}, {newMeeting.StartDate}, {newMeeting.EndDate}, {newMeeting.EventDescription}");
+
+                    var serializedEvent = JsonConvert.SerializeObject(newMeeting);
+
+                    string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/EventStorage";
+
+                    string filePath = path + $@"{newMeeting.Day}.{newMeeting.Month}.BaseEvent.txt";
+
+                    if (!File.Exists(filePath))
+                    {
+                        File.Create(filePath);
+                    }
+
+                    using (StreamWriter sw = File.AppendText(filePath))
+                    {
+                        sw.WriteLine("---");
+                        sw.WriteLine(serializedEvent);
+                        sw.WriteLine("---");
+                    }
                 }
+
 
 
                 else if (eventTypeAnswer == "B" || eventTypeAnswer == "b")
@@ -80,7 +103,28 @@ namespace CalculatorApplication
                     newMeeting.HollidayName = newEventDesc.ToString();
 
                     Console.WriteLine($"is this correct? {newMeeting.EventName}, {newMeeting.ID}, {newMeeting.StartDate}, {newMeeting.EndDate}, it's a holliday for {newMeeting.HollidayName}");
+
+                    var serializedEvent = JsonConvert.SerializeObject(newMeeting);
+
+                    string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/EventStorage";
+
+                    string filePath = path + $@"{newMeeting.Day}.{newMeeting.Month}.Holliday.txt";
+
+                    if (!File.Exists(filePath))
+                    {
+                        File.Create(filePath);
+                    }
+
+                    using (StreamWriter sw = File.AppendText(filePath))
+                    {
+                        sw.WriteLine("---");
+                        sw.WriteLine(serializedEvent);
+                        sw.WriteLine("---");
+                    }
                 }
+
+
+
                 else if (eventTypeAnswer == "C" || eventTypeAnswer == "c")
                 {
                     var newMeeting = new Meeting();
@@ -92,7 +136,28 @@ namespace CalculatorApplication
                     newMeeting.ColleagueName = newEventDesc.ToString();
 
                     Console.WriteLine($"is this correct? {newMeeting.EventName}, {newMeeting.ID}, {newMeeting.StartDate}, {newMeeting.EndDate}, you are meeting with {newMeeting.ColleagueName}");
+
+                    var serializedEvent = JsonConvert.SerializeObject(newMeeting);
+
+                    string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/EventStorage";
+
+                    string filePath = path + $@"{newMeeting.Day}.{newMeeting.Month}.Meeting.txt";
+
+                    if (!File.Exists(filePath))
+                    {
+                        File.Create(filePath);
+                    }
+
+                    using (StreamWriter sw = File.AppendText(filePath))
+                    {
+                        sw.WriteLine("---");
+                        sw.WriteLine(serializedEvent);
+                        sw.WriteLine("---");
+                    }
                 }
+
+
+
                 else if (eventTypeAnswer == "D" || eventTypeAnswer == "d")
                 {
                     var newMeeting = new OnlineMeeting();
@@ -104,6 +169,24 @@ namespace CalculatorApplication
                     newMeeting.MeetingPlatform = newEventDesc.ToString();
 
                     Console.WriteLine($"is this correct? {newMeeting.EventName}, {newMeeting.ID}, {newMeeting.StartDate}, {newMeeting.EndDate}, you are meeting on {newMeeting.MeetingPlatform}");
+
+                    var serializedEvent = JsonConvert.SerializeObject(newMeeting);
+
+                    string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/EventStorage";
+
+                    string filePath = path + $@"{newMeeting.Day}.{newMeeting.Month}.OnlineEvent.txt";
+
+                    if (!File.Exists(filePath))
+                    {
+                        File.Create(filePath);
+                    }
+
+                    using (StreamWriter sw = File.AppendText(filePath))
+                    {
+                        sw.WriteLine("---");
+                        sw.WriteLine(serializedEvent);
+                        sw.WriteLine("---");
+                    }
                 }
 
 
@@ -128,18 +211,55 @@ namespace CalculatorApplication
                 Console.WriteLine("you chose d");
             }
 
+            else if (actionAnswer == "E" || actionAnswer == "e")
+            {
+                Console.WriteLine("here is the history of errors:");
+
+                string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/ExceptionStorage/PastExceptions.txt";
+
+
+                string fileText = File.ReadAllText(path);
+                var splittedExs = fileText.Split("---");
+
+                foreach (var item in splittedExs)
+                {
+                    var deserializedExs = JsonConvert.DeserializeObject(item);
+                    Console.WriteLine(deserializedExs);
+
+                }
+
+            }
+
             else
             {
+                
                 Console.WriteLine("please choose from available answers");
-                Start();
+                
             }
+
+
+        }
+
+        public static class EventObjectLibrary
+        {
+            static void recordEvent (string recordableObject)
+            {
+
+            }
+
+
 
 
         }
 
 
 
+       
+
+
+
     }
+
 
 
 
