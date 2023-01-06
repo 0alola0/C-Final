@@ -15,6 +15,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="EventStorage\" />
     <None Remove="ExceptionStorage\" />
+    <None Remove="Extentions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
@@ -23,6 +24,7 @@
     <Folder Include="Events\EventTypes\OnlineEvents\" />
     <Folder Include="EventStorage\" />
     <Folder Include="ExceptionStorage\" />
+    <Folder Include="Extentions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
