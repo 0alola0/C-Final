@@ -1,13 +1,21 @@
 ﻿<Properties StartupConfiguration="{A2475B13-E56E-4D3C-8DDC-2F85D4DAAEAA}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.CalculatorApplication PreferredExecutionTarget="MonoDevelop.Default" FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.CalculatorApplication PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="CalculatorApplication/Program.cs">
     <Files>
-      <File FileName="CalculatorApplication/Program.cs" Line="4" Column="1" />
+      <File FileName="CalculatorApplication/Program.cs" Line="131" Column="39" />
+      <File FileName="CalculatorApplication/Events/EventTypes/Meeting.cs" Line="210" Column="71" />
+      <File FileName="CalculatorApplication/EventInterfaces/IEventInterface.cs" Line="11" Column="1" />
+      <File FileName="CalculatorApplication/Events/BaseEvent.cs" Line="180" Column="75" />
+      <File FileName="CalculatorApplication/Events/EventTypes/Holliday.cs" Line="205" Column="49" />
+      <File FileName="CalculatorApplication/Events/EventTypes/OnlineMeeting.cs" Line="206" Column="22" />
+      <File FileName="CalculatorApplication/ExceptionStorage/PastExceptions.txt" Line="1" Column="1" />
+      <File FileName="CalculatorApplication/Extentions/ProcessException.cs" Line="20" Column="1" />
+      <File FileName="CalculatorApplication/Extentions/ProcessFile.cs" Line="48" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

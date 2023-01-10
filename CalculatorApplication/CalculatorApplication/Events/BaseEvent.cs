@@ -1,5 +1,6 @@
 ﻿using System;
 using CalculatorApplication.EventInterfaces;
+using CalculatorApplication.Extentions;
 using Newtonsoft.Json;
 
 namespace CalculatorApplication.Events
@@ -13,6 +14,10 @@ namespace CalculatorApplication.Events
             get { return id; }
             set { id = value; }
         }
+
+        public string pathSuffix = "BaseEvent.txt";
+
+        public string fullPath;
 
         private string eventName;
         public string EventName
@@ -79,82 +84,24 @@ namespace CalculatorApplication.Events
 
             StartDate = Month + Day;
 
-
-
             Console.WriteLine("when does your event end? month and then day");
             var endMonth = Console.ReadLine().ToString();
             var endDay = Console.ReadLine().ToString();
 
             EndDate = endMonth + endDay;
 
+            Console.WriteLine($"is this correct? {EventName}, {ID}, {StartDate}, {EndDate}, {EventDescription}");
 
-
+            fullPath = ProcessFile.CreatePath(Month, Day, pathSuffix);
 
         }
 
-        public void DeleteEvent()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void ChangeEventStatus()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void ChangeDescription()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SeeAllEvents()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SeeEventsForDate()
+        public static void SeeEventsForDate(string filePath)
         {
             try
             {
-                Console.WriteLine("for what date do you want to see events? input month and then day");
-                var month = Console.ReadLine().ToString();
-                var day = Console.ReadLine().ToString();
-
-                string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/EventStorage";
-
-                Console.WriteLine("what tyoe of ecent do you want to see?");
-                Console.WriteLine("A. a general event");
-                Console.WriteLine("B. a holliday event");
-                Console.WriteLine("C. a Meeting");
-                Console.WriteLine("D. an online event");
-
-                var actionAnswer = Console.ReadLine();
-
-                string filePath = path + $@"{day}.{month}.Meeting.txt";
-
-                if (actionAnswer == "A" || actionAnswer == "a")
-                {
-                    filePath = path + $@"{day}.{month}.BaseEvent.txt";
-                }
-
-                else if (actionAnswer == "B" || actionAnswer == "b")
-                {
-                    filePath = path + $@"{day}.{month}.Holliday.txt";
-                }
-
-                else if (actionAnswer == "C" || actionAnswer == "c")
-                {
-                    filePath = path + $@"{day}.{month}.Meeting.txt";
-                }
-
-                else if (actionAnswer == "D" || actionAnswer == "d")
-                {
-                    filePath = path + $@"{day}.{month}.OnlineMeeting.txt";
-                }
-
-
-
-
                 if (!File.Exists(filePath))
                 {
                     Console.WriteLine("no such events for that day");
@@ -177,22 +124,142 @@ namespace CalculatorApplication.Events
 
             catch(Exception ex)
             {
-                var serializedEx = JsonConvert.SerializeObject(ex);
-
-                string path = @"c:/Users/macuser/Desktop/C#final/CalculatorApplication/CalculatorApplication/ExceptionStorage/PastExceptions.txt";
-
-                
-                using (StreamWriter sw = File.AppendText(path))
-                {
-                    sw.WriteLine("---");
-                    sw.WriteLine(serializedEx);
-                    sw.WriteLine("---");
-                }
+                ProcessException.ProcessSingleException(ex.Message, ex.StackTrace);
             }
 
 
 
         }
+
+
+        public static void DeleteEvent(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine("no events for that day");
+                }
+
+                else
+                {
+                    Console.WriteLine("now browse through the events and choose which one you'd like to change with ID");
+
+                    string fileText = File.ReadAllText(filePath);
+                    var splittedDates = fileText.Split("---");
+                    List<BaseEvent> EventList = new List<BaseEvent>();
+
+                    foreach (var item in splittedDates)
+                    {
+                        var deserializedEvents = JsonConvert.DeserializeObject<BaseEvent>(item);
+                        EventList.Add(deserializedEvents);
+                        Console.WriteLine($"event : {deserializedEvents.EventName}, {deserializedEvents.EventDescription}, {deserializedEvents.id}, starts: {deserializedEvents.StartDate}, ends: {deserializedEvents.EndDate}");
+
+                    }
+
+                    Console.WriteLine("please input the id of which item you want to change");
+                    int idAnswer = Convert.ToInt32(Console.ReadLine());
+                    EventList.RemoveAll(x => x.ID == idAnswer);
+
+                    File.WriteAllText(filePath, string.Empty);
+
+                    foreach (var item in EventList)
+                    {
+                        var serializedEventList = JsonConvert.SerializeObject(item);
+
+                        using (StreamWriter sw = File.AppendText(filePath))
+                        {
+
+                            sw.WriteLine("---");
+                            sw.WriteLine(serializedEventList);
+                            sw.WriteLine("---");
+                        }
+
+                    }
+
+                    Console.WriteLine("now please input new information");
+
+                    
+                }
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                ProcessException.ProcessSingleException(ex.Message, ex.StackTrace);
+            }
+
+
+        }
+
+
+        public static void AmendEvent(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine("no events for that day");
+                }
+
+                else
+                {
+                    Console.WriteLine("now browse through the events and choose which one you'd like to remove with ID");
+
+                    string fileText = File.ReadAllText(filePath);
+                    var splittedDates = fileText.Split("---");
+                    List<BaseEvent> EventList = new List<BaseEvent>();
+
+                    foreach (var item in splittedDates)
+                    {
+                        var deserializedEvents = JsonConvert.DeserializeObject<BaseEvent>(item);
+                        EventList.Add(deserializedEvents);
+                        Console.WriteLine($"event : {deserializedEvents.EventName}, {deserializedEvents.EventDescription}, {deserializedEvents.id}, starts: {deserializedEvents.StartDate}, ends: {deserializedEvents.EndDate}");
+
+                    }
+
+                    Console.WriteLine("please input the id of which item you want to remove");
+                    int idAnswer = Convert.ToInt32(Console.ReadLine());
+                    EventList.RemoveAll(x => x.ID == idAnswer);
+
+                    File.WriteAllText(filePath, string.Empty);
+
+                    foreach (var item in EventList)
+                    {
+                        var serializedEventList = JsonConvert.SerializeObject(item);
+
+                        using (StreamWriter sw = File.AppendText(filePath))
+                        {
+
+                            sw.WriteLine("---");
+                            sw.WriteLine(serializedEventList);
+                            sw.WriteLine("---");
+                        }
+
+                    }
+
+
+                }
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                ProcessException.ProcessSingleException(ex.Message, ex.StackTrace);
+            }
+
+
+        }
+
+
+
+
+
+
     }
 }
 
